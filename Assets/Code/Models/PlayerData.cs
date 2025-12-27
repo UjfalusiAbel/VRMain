@@ -5,8 +5,14 @@ using System.Threading.Tasks;
 
 namespace VRMain.Assets.Code.Models
 {
+    [Serializable]
     public class PlayerData
     {
-        public Dictionary<int, HashSet<int>> _levelsFinished;
+        public HashSet<int> LevelsFinished { get; set; }
+        public PlayerData()
+        {
+            LevelsFinished = new HashSet<int>();
+            LevelsFinished.Add(0);
+        }
     }
 }
