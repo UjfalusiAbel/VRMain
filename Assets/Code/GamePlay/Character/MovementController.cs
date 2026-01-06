@@ -81,7 +81,6 @@ namespace VRMain.Assets.Code.GamePlay.Character
             }
 
             OnInteractPressed?.Invoke();
-
             Debug.Log("Interacted");
         }
 

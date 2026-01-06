@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2e6307f24fa8fb5ba9d5d120594c3e0c, type: 3}
-  m_Name: Dialogue2
+  m_Name: Dialogue3
   m_EditorClassIdentifier: Assembly-CSharp::VRMain.Assets.Code.Models.ScriptableObjects.DialogueNode
-  dialogueText: Really? I am here to help if needed.
+  dialogueText: Oh, you are searching a way out? Sure, here is your key, no problem!
   optionA:
-    choiceText: Well, actually I am searching a way out.
-    nextNode: {fileID: 11400000, guid: 1027678ccffc8d494a7b043dbd0c2682, type: 2}
-    action: {fileID: 0}
+    choiceText: Thank you very much!
+    nextNode: {fileID: 0}
+    action: {fileID: 11400000, guid: 274e43bb4172b0917aaf6341d39b3c06, type: 2}
   optionB:
-    choiceText: ....
+    choiceText: I don't talk to you!
     nextNode: {fileID: 0}
     action: {fileID: 11400000, guid: 839cf5d77eba453d9b7b7033e3dd6b05, type: 2}

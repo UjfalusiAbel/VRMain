@@ -15,7 +15,7 @@ MonoBehaviour:
   dialogueText: Hello! What's up, do you need anything?
   optionA:
     choiceText: Hello. Yes, i am searching a way out. Can you help?
-    nextNode: {fileID: 0}
+    nextNode: {fileID: 11400000, guid: 1027678ccffc8d494a7b043dbd0c2682, type: 2}
     action: {fileID: 0}
   optionB:
     choiceText: Eh, no thanks.

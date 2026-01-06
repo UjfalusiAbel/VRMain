@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using UnityEngine;
 using VRMain.Assets.Code.GamePlay.Character;
 using VRMain.Assets.Code.GamePlay.NPC;
@@ -35,11 +36,6 @@ namespace VRMain.Assets.Code
             }
         }
 
-        public void OnDestroy()
-        {
-            SaveData();
-        }
-
         public void Start()
         {
             _playerData = new PlayerData();
@@ -48,7 +44,7 @@ namespace VRMain.Assets.Code
             {
                 var rawData = File.ReadAllText(saveFilePath);
                 var decryptedData = _encryptor.EncryptDecrypt(rawData);
-                _playerData = JsonUtility.FromJson<PlayerData>(decryptedData);
+                _playerData = JsonConvert.DeserializeObject<PlayerData>(decryptedData);
             }
             else
             {
@@ -59,6 +55,7 @@ namespace VRMain.Assets.Code
         public void FinishLevel(int level)
         {
             _playerData.LevelsFinished.Add(level);
+            SaveData();
         }
 
         public void LooseLevel()
@@ -88,9 +85,10 @@ namespace VRMain.Assets.Code
                 File.Create(saveFilePath);
             }
 
-            var jsonText = JsonUtility.ToJson(_playerData);
+            var jsonText = JsonConvert.SerializeObject(_playerData);
             var encryptedText = _encryptor.EncryptDecrypt(jsonText);
             File.WriteAllText(saveFilePath, encryptedText);
+            Debug.Log($"{jsonText} and {_playerData.LevelsFinished.ToList().Count}");
         }
     }
 }

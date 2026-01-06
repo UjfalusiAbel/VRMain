@@ -10,5 +10,4 @@ namespace VRMain.Assets.Code.Models.ScriptableObjects
             GameManager.Singleton.LooseLevel();
         }
     }
-
 }
