@@ -42,6 +42,8 @@ namespace VRMain.Assets.Code.UI.Utility
             }
 
             MovementController.Singleton.IsLocked = true;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
             _fadeCoroutine = StartCoroutine(FadeRoutine(0f, 1f));
             _closeButton.gameObject.SetActive(true);
         }
@@ -56,6 +58,8 @@ namespace VRMain.Assets.Code.UI.Utility
 
             _fadeCoroutine = StartCoroutine(FadeOutRoutine());
             MovementController.Singleton.IsLocked = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
 
         private IEnumerator FadeRoutine(float from, float to)

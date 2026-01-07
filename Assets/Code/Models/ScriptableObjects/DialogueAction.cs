@@ -4,6 +4,6 @@ namespace VRMain.Assets.Code.Models.ScriptableObjects
 {
     public abstract class DialogueAction : ScriptableObject
     {
-        public abstract void Execute();
+        public abstract void Execute(GameObject context);
     }
 }

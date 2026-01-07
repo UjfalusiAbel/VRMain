@@ -11,7 +11,7 @@ namespace VRMain.Assets.Code.Models.ScriptableObjects
         [Header("Level to Finish")]
         [SerializeField] private int _levelNumber = 1;
 
-        public override void Execute()
+        public override void Execute(GameObject context)
         {
             if (GameManager.Singleton != null)
             {

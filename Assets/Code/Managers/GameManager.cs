@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using UnityEngine;
 using VRMain.Assets.Code.GamePlay.Character;
 using VRMain.Assets.Code.GamePlay.NPC;
+using VRMain.Assets.Code.Managers;
 using VRMain.Assets.Code.Models;
 using VRMain.Assets.Code.Utils;
 
@@ -74,6 +75,13 @@ namespace VRMain.Assets.Code
             {
                 MovementController.Singleton.IsLocked = true;
             }
+        }
+
+        public void ResetAll()
+        {
+            _playerData = new PlayerData();
+            SaveData();
+            LevelManager.Singleton.CheckLevels();
         }
 
 

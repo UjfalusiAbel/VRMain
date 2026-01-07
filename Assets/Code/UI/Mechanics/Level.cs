@@ -22,6 +22,12 @@ namespace VRMain.Assets.Code.UI.Mechanics
             _lock.SetActive(false);
         }
 
+        public void Lock()
+        {
+            _isLocked = false;
+            _lock.SetActive(true);
+        }
+
         public void Start()
         {
             GetComponent<Button>().onClick.AddListener(() => GoToLevel());

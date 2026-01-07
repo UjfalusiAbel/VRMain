@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e6307f24fa8fb5ba9d5d120594c3e0c, type: 3}
+  m_Name: Dialogue1
+  m_EditorClassIdentifier: Assembly-CSharp::VRMain.Assets.Code.Models.ScriptableObjects.DialogueNode
+  dialogueText: Hello! What's up?
+  optionA:
+    choiceText: Can you please let me out?
+    nextNode: {fileID: 0}
+    action: {fileID: 11400000, guid: fd105941e59812d39b332524a49493f2, type: 2}
+  optionB:
+    choiceText: ....
+    nextNode: {fileID: 0}
+    action: {fileID: 11400000, guid: 839cf5d77eba453d9b7b7033e3dd6b05, type: 2}

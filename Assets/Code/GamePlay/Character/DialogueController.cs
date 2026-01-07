@@ -18,6 +18,7 @@ namespace VRMain.Assets.Code.GamePlay.Character
         [SerializeField] private TMP_Text optionBText;
 
         private DialogueNode _currentNode;
+        private GameObject _dialogueOwner;
 
         private void Awake()
         {
@@ -25,11 +26,16 @@ namespace VRMain.Assets.Code.GamePlay.Character
             optionBButton.onClick.AddListener(() => SelectOption(_currentNode.optionB));
         }
 
-        public void StartDialogue(DialogueNode startNode)
+        public void StartDialogue(DialogueNode startNode, GameObject owner)
         {
+            _dialogueOwner = owner;
             dialoguePanel.SetActive(true);
             SetNode(startNode);
+
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
+
 
         private void SetNode(DialogueNode node)
         {
@@ -46,8 +52,6 @@ namespace VRMain.Assets.Code.GamePlay.Character
 
         private void SelectOption(DialogueChoice choice)
         {
-            choice.action?.Execute();
-
             if (choice.nextNode != null)
             {
                 SetNode(choice.nextNode);
@@ -56,6 +60,8 @@ namespace VRMain.Assets.Code.GamePlay.Character
             {
                 EndDialogue();
             }
+
+            choice.action?.Execute(_dialogueOwner);
         }
 
         private void EndDialogue()
@@ -66,6 +72,9 @@ namespace VRMain.Assets.Code.GamePlay.Character
             {
                 MovementController.Singleton.IsLocked = false;
             }
+
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
     }
 

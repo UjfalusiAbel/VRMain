@@ -57,21 +57,33 @@ namespace VRMain.Assets.Code.GamePlay.Character
         public void OnEnable()
         {
             _input.CharacterMap.Enable();
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
 
         public void OnDisable()
         {
             _input.CharacterMap.Disable();
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
 
         public void Update()
         {
             if (!_isLocked)
             {
-                HandleMove();
                 HandleLookAround();
             }
         }
+
+        private void FixedUpdate()
+        {
+            if (!_isLocked)
+            {
+                HandleMove();
+            }
+        }
+
 
         private void OnInteractPerformed(InputAction.CallbackContext context)
         {
@@ -81,7 +93,6 @@ namespace VRMain.Assets.Code.GamePlay.Character
             }
 
             OnInteractPressed?.Invoke();
-            Debug.Log("Interacted");
         }
 
         private void OnMovementPerformed(InputAction.CallbackContext callbackContext)
@@ -116,8 +127,12 @@ namespace VRMain.Assets.Code.GamePlay.Character
         {
             Vector3 move = transform.right * _movementVector.x + transform.forward * _movementVector.y;
             move.y = 0f;
-            transform.position += move.normalized * _movementSpeed * _activeSpeedModifier * Time.fixedDeltaTime;
+
+            Vector3 targetPosition = _rigidbody.position + move.normalized * _movementSpeed * _activeSpeedModifier * Time.fixedDeltaTime;
+
+            _rigidbody.MovePosition(targetPosition);
         }
+
 
         private void HandleLookAround()
         {
@@ -132,10 +147,9 @@ namespace VRMain.Assets.Code.GamePlay.Character
             _cameraTransform.localRotation = Quaternion.Euler(_verticalRotation, 0f, 0f);
         }
 
-
         private bool IsGrounded()
         {
-            return Physics.Raycast(transform.position, Vector3.down, _groundCheckDistance, _groundLayer);
+            return Physics.CheckSphere(transform.position + Vector3.down * 0.5f, 0.25f, _groundLayer);
         }
 
     }

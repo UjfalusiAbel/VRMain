@@ -10,13 +10,16 @@ namespace VRMain.Assets.Code.Managers
 {
     public class Activator : MonoBehaviour
     {
-        [SerializeField] private NPCDialogueInteractor _interactor;
+        [SerializeField] private List<NPCDialogueInteractor> _interactors;
         [SerializeField] private DialogueController _dialogueController;
         [SerializeField] private MovementController _movementController;
         public void Awake()
         {
             _movementController.enabled = true;
-            _interactor.enabled = true;
+            foreach (var interactor in _interactors)
+            {
+                interactor.enabled = true;
+            }
             _dialogueController.enabled = true;
         }
     }

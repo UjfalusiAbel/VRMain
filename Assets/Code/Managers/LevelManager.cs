@@ -11,6 +11,13 @@ namespace VRMain.Assets.Code.Managers
     {
         [SerializeField]
         private List<Level> _levels;
+        private static LevelManager _instance;
+        public static LevelManager Singleton => _instance;
+
+        public void Awake()
+        {
+            _instance = this;
+        }
 
         public void Start()
         {
@@ -29,6 +36,10 @@ namespace VRMain.Assets.Code.Managers
                 if(GameManager.Singleton.PlayerData.LevelsFinished.Contains(level.GetLevel - 1))
                 {
                     level.Unlock();
+                }
+                else
+                {
+                    level.Lock();
                 }
             }
         }

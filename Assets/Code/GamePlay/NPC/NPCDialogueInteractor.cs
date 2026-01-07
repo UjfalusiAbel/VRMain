@@ -14,6 +14,7 @@ namespace VRMain.Assets.Code.GamePlay.NPC
         [Header("Interaction")]
         [SerializeField] private float _interactionRange = 2f;
         [SerializeField] private Transform _player;
+        private bool _finishedInteraction = false;
 
         private void OnEnable()
         {
@@ -33,13 +34,15 @@ namespace VRMain.Assets.Code.GamePlay.NPC
 
         private void TryInteract()
         {
-            if (!IsPlayerInRange())
+            if (!IsPlayerInRange() || _finishedInteraction)
             {
                 return;
             }
 
             MovementController.Singleton.IsLocked = true;
-            _dialogueController.StartDialogue(_startingDialogue);
+            _dialogueController.StartDialogue(_startingDialogue, gameObject);
+            _finishedInteraction = true;
+            enabled = false;
         }
 
         private bool IsPlayerInRange()
